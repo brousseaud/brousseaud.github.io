@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dan — Public servant &amp; designer</title>
+<meta name="description" content="Team lead at Transport Canada and freelance web & graphic designer since 2009. Gatineau, QC.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16130f; --paper:#f4efe6; --rust:#c2471b; --navy:#15202e; --navy-2:#22324a;
+    --muted:#6b6257; --line:#d6ccbb;
+    --serif:"Fraunces",Georgia,serif; --sans:"Inter",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit}
+  html[data-lang="en"] [lang="fr"],html[data-lang="fr"] [lang="en"]{display:none!important}
+  .mono{font-family:var(--mono)}
+
+  /* ---------- nav ---------- */
+  nav{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;justify-content:space-between;align-items:center;
+      padding:18px clamp(20px,4vw,48px);mix-blend-mode:difference;color:#fff;pointer-events:none}
+  nav > *{pointer-events:auto}
+  .mark{font:800 22px var(--serif);text-decoration:none;letter-spacing:-.02em}
+  .toggle{border:1px solid #fff;background:none;color:#fff;font:500 12px var(--mono);padding:5px 11px;border-radius:99px;cursor:pointer}
+
+  /* ---------- hero: split identity ---------- */
+  .hero{position:relative;height:100vh;min-height:560px;overflow:hidden;cursor:ew-resize;user-select:none;touch-action:pan-y}
+  .side{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:0 clamp(20px,4vw,48px) clamp(40px,9vh,88px)}
+  .side h1{font-size:clamp(54px,10.5vw,168px);line-height:.88;letter-spacing:-.045em;max-width:9ch}
+  .side .sub{margin-top:26px;font:14px/1.8 var(--mono);max-width:38ch}
+  .day{background:var(--navy);color:#e8e2d6;
+       background-image:linear-gradient(var(--navy-2) 1px,transparent 1px),linear-gradient(90deg,var(--navy-2) 1px,transparent 1px);
+       background-size:48px 48px}
+  .day h1{font-family:var(--sans);font-weight:600;letter-spacing:-.055em}
+  .day .sub{color:#93a6bd}
+  .day .badge{position:absolute;top:96px;left:clamp(20px,4vw,48px);font:12px var(--mono);color:#93a6bd;border:1px solid var(--navy-2);padding:8px 12px;line-height:1.7}
+  .night{background:var(--paper);color:var(--ink);align-items:flex-end;text-align:right;clip-path:inset(0 0 0 var(--x,50%))}
+  .night h1{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--rust)}
+  .night h1 b{font-style:normal;font-weight:800;color:var(--ink)}
+  .night .sub{color:var(--muted)}
+  .night .blob{position:absolute;top:12%;right:8%;width:min(34vw,380px);aspect-ratio:1;border-radius:46% 54% 38% 62%/52% 40% 60% 48%;
+       background:var(--rust);opacity:.12;animation:morph 14s ease-in-out infinite}
+  @keyframes morph{50%{border-radius:60% 40% 55% 45%/40% 62% 38% 60%;transform:rotate(30deg) scale(1.08)}}
+
+  .handle{position:absolute;top:0;bottom:0;left:var(--x,50%);width:0;z-index:5}
+  .handle::before{content:"";position:absolute;inset:0 -1px;background:var(--rust)}
+  .knob{position:absolute;top:50%;left:0;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;
+        background:var(--rust);color:#fff;display:grid;place-items:center;font:600 18px var(--mono);
+        box-shadow:0 0 0 8px rgba(194,71,27,.18);cursor:grab;outline:none;transition:box-shadow .2s}
+  .knob:focus-visible,.knob:hover{box-shadow:0 0 0 14px rgba(194,71,27,.22)}
+  .hint{position:absolute;top:calc(50% + 48px);left:0;transform:translateX(-50%);white-space:nowrap;
+        font:11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--rust);background:var(--paper);padding:3px 8px;transition:opacity .4s}
+  .hero.touched .hint{opacity:0}
+
+  /* ---------- intro strip ---------- */
+  .intro{max-width:1100px;margin:0 auto;padding:clamp(72px,12vw,140px) clamp(20px,4vw,48px);
+         display:grid;grid-template-columns:1fr 2fr;gap:40px;align-items:start}
+  .eyebrow{font:500 12px var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--rust)}
+  .intro p{font:400 clamp(22px,2.6vw,32px)/1.35 var(--serif);letter-spacing:-.01em}
+  .intro p em{color:var(--rust)}
+  @media(max-width:760px){.intro{grid-template-columns:1fr}}
+
+  /* ---------- projects ---------- */
+  .work{background:var(--ink);color:var(--paper);padding:clamp(72px,10vw,120px) 0}
+  .work .head{max-width:1100px;margin:0 auto 32px;padding:0 clamp(20px,4vw,48px);display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap}
+  .work .head span:last-child{font:12px var(--mono);color:#8c8174}
+  .rows{max-width:1100px;margin:0 auto;padding:0 clamp(20px,4vw,48px);list-style:none}
+  .row{border-top:1px solid #352f27;cursor:pointer}
+  .row:last-child{border-bottom:1px solid #352f27}
+  .row-main{display:grid;grid-template-columns:56px 1fr auto;align-items:center;gap:16px;padding:26px 0;transition:padding .3s}
+  .row .n{font:13px var(--mono);color:#8c8174}
+  .row h3{font:600 clamp(28px,4.4vw,56px)/1 var(--serif);letter-spacing:-.025em;transition:color .25s,transform .35s cubic-bezier(.2,.8,.2,1)}
+  .row .k{font:12px var(--mono);color:#8c8174;text-transform:uppercase;letter-spacing:.1em;text-align:right}
+  .row:hover h3,.row.open h3{color:var(--rust);transform:translateX(14px)}
+  .row-more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.2,.8,.2,1)}
+  .row.open .row-more{grid-template-rows:1fr}
+  .row-more > div{overflow:hidden}
+  .more-in{display:grid;grid-template-columns:56px 1fr;gap:16px;padding:0 0 32px}
+  .more-in p{color:#c5baa9;max-width:52ch;font-size:16px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+  .chip{font:11px var(--mono);padding:3px 9px;border:1px solid #4a4237;border-radius:99px;color:#d4c9b8}
+  .more-in .live{font:12px var(--mono);color:var(--rust);margin-top:14px;display:inline-block}
+  @media(max-width:760px){
+    .row-main{grid-template-columns:36px 1fr}.row .k{display:none}
+    .more-in{grid-template-columns:1fr;padding-left:0}.more-in > span{display:none}
+  }
+
+  /* ---------- contact ---------- */
+  .contact{max-width:1100px;margin:0 auto;padding:clamp(80px,12vw,150px) clamp(20px,4vw,48px)}
+  .big{display:inline-block;font:800 clamp(44px,8vw,112px)/.95 var(--serif);letter-spacing:-.04em;text-decoration:none;position:relative;margin-top:18px}
+  .big::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:6px;background:var(--rust);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+  .big:hover::after{transform:scaleX(1)}
+  .big .arr{display:inline-block;color:var(--rust);transition:transform .4s}
+  .big:hover .arr{transform:translateX(16px) rotate(-45deg)}
+  .elsewhere{display:flex;gap:24px;margin-top:40px;font:14px var(--mono)}
+  .elsewhere a{text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+  .elsewhere a:hover{color:var(--rust);border-color:var(--rust)}
+  footer{max-width:1100px;margin:0 auto;padding:24px clamp(20px,4vw,48px) 40px;font:12px var(--mono);color:var(--muted);border-top:1px solid var(--line)}
+
+  @media(max-width:760px){
+    .day{justify-content:flex-start;padding-top:170px}
+    .day .badge{top:76px}
+    .side h1{font-size:clamp(48px,14vw,80px)}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="mark" href="#">Dan.</a>
+  <button class="toggle" id="langBtn" aria-label="Switch language">FR</button>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="hero">
+  <div class="side day">
+    <div class="badge">CBSA → SSC → TC<br><span lang="en">17 yrs · federal public service</span><span lang="fr">17 ans · fonction publique fédérale</span></div>
+    <h1 class="scr"><span lang="en">Public servant by&nbsp;day.</span><span lang="fr">Fonctionnaire de&nbsp;jour.</span></h1>
+    <p class="sub"><span lang="en">Team lead at Transport Canada. Strategy, people, delivery.</span><span lang="fr">Chef d'équipe à Transports Canada. Stratégie, équipe, livraison.</span></p>
+  </div>
+  <div class="side night" aria-hidden="false">
+    <div class="blob"></div>
+    <h1 class="scr"><span lang="en"><b>Designer</b> since&nbsp;2009.</span><span lang="fr"><b>Designer</b> depuis&nbsp;2009.</span></h1>
+    <p class="sub"><span lang="en">Freelance websites, brands &amp; web apps, Gatineau.</span><span lang="fr">Sites, identités &amp; applis web à la pige, Gatineau.</span></p>
+  </div>
+  <div class="handle">
+    <div class="knob" id="knob" role="slider" tabindex="0" aria-label="Day job / design" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">⟷</div>
+    <div class="hint"><span lang="en">drag me</span><span lang="fr">glissez-moi</span></div>
+  </div>
+</header>
+
+<!-- ============ INTRO ============ -->
+<section class="intro">
+  <div class="eyebrow"><span lang="en">Hi, I'm Dan — a.k.a. GrandRoux</span><span lang="fr">Salut, c'est Dan — alias GrandRoux</span></div>
+  <p>
+    <span lang="en">I've spent 17 years in the federal public service and lead a team at Transport Canada. On the other side of the slider, I've been <em>freelancing in web &amp; graphic design</em> since 2009 — and lately I build the apps my own corner of Gatineau needs: the softball league, the hockey bench, the kitchen table.</span>
+    <span lang="fr">J'ai passé 17 ans dans la fonction publique fédérale et je dirige une équipe à Transports Canada. De l'autre côté du curseur, je fais du <em>design web et graphique à la pige</em> depuis 2009 — et ces temps-ci, je bâtis les applis dont mon coin de Gatineau a besoin : la ligue de balle, le banc de hockey, la table de cuisine.</span>
+  </p>
+</section>
+
+<!-- ============ WORK ============ -->
+<section class="work" id="work">
+  <div class="head">
+    <span class="eyebrow"><span lang="en">Selected work</span><span lang="fr">Projets choisis</span></span>
+    <span><span lang="en">click to open</span><span lang="fr">cliquez pour ouvrir</span></span>
+  </div>
+  <ul class="rows" id="rows">
+
+    <li class="row">
+      <div class="row-main"><span class="n">01</span><h3>Dugout</h3><span class="k"><span lang="en">Web app</span><span lang="fr">Appli web</span></span></div>
+      <div class="row-more"><div><div class="more-in"><span></span>
+        <div>
+          <p><span lang="en">Scorekeeping and team-management app for the LBAO co-ed softball league. Captains set rosters and batting orders; scorekeepers run a live game sheet built around the league's own rules. Logins, schedules and seasons come straight from the league's WordPress.</span><span lang="fr">Appli de pointage et de gestion d'équipes pour la ligue de balle-molle mixte LBAO. Les capitaines gèrent alignements et ordres au bâton; les marqueurs utilisent une feuille de match en direct, bâtie autour des règles de la ligue. Connexions, horaires et saisons viennent du WordPress de la ligue.</span></p>
+          <div class="chips"><span class="chip">WP REST API</span><span class="chip">SportsPress</span><span class="chip">Mobile-first</span></div>
+        </div>
+      </div></div></div>
+    </li>
+
+    <li class="row">
+      <div class="row-main"><span class="n">02</span><h3><span lang="en">Practice planner</span><span lang="fr">Planif. de pratiques</span></h3><span class="k">Coaching</span></div>
+      <div class="row-more"><div><div class="more-in"><span></span>
+        <div>
+          <p><span lang="en">A bilingual practice-planning tool for minor hockey coaches — build a session from a drill library for skaters and goalies, by age group. Made from the bench, as a certified coach.</span><span lang="fr">Un outil bilingue de planification de pratiques pour entraîneurs de hockey mineur — bâtir une séance à partir d'une banque d'exercices pour joueurs et gardiens, par catégorie d'âge. Conçu derrière le banc, par un entraîneur certifié.</span></p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">FR / EN</span><span class="chip">U9</span></div>
+        </div>
+      </div></div></div>
+    </li>
+
+    <li class="row">
+      <div class="row-main"><span class="n">03</span><h3><span lang="en">Homework game</span><span lang="fr">Jeu de devoirs</span></h3><span class="k"><span lang="en">Learning</span><span lang="fr">Apprentissage</span></span></div>
+      <div class="row-more"><div><div class="more-in"><span></span>
+        <div>
+          <p><span lang="en">French spelling, reading and math games that turn the weekly homework sheet into play. Parent-managed accounts, saved progress, personal bests — and no leaderboards.</span><span lang="fr">Des jeux d'orthographe, de lecture et de maths qui transforment la feuille de devoirs de la semaine en jeu. Comptes gérés par les parents, progrès sauvegardés, records personnels — et aucun classement.</span></p>
+          <div class="chips"><span class="chip">JavaScript</span><span class="chip">Self-hosted</span><span class="chip">Kids UX</span></div>
+        </div>
+      </div></div></div>
+    </li>
+
+    <li class="row">
+      <div class="row-main"><span class="n">04</span><h3>D-Tales Art &amp; Tattoo</h3><span class="k"><span lang="en">Client</span><span lang="fr">Client</span></span></div>
+      <div class="row-more"><div><div class="more-in"><span></span>
+        <div>
+          <p><span lang="en">WordPress + WooCommerce site for a Gatineau/Ottawa tattoo artist and illustrator: portfolio, booking, shop and a video gallery of recent pieces, with on-page SEO throughout.</span><span lang="fr">Site WordPress + WooCommerce pour un tatoueur-illustrateur de Gatineau/Ottawa : portfolio, réservations, boutique et galerie vidéo des dernières pièces, avec SEO sur toutes les pages.</span></p>
+          <div class="chips"><span class="chip">WooCommerce</span><span class="chip">Yoast SEO</span></div>
+          <a class="live" href="https://dtalesartandtattoo.com" target="_blank" rel="noopener">dtalesartandtattoo.com ↗</a>
+        </div>
+      </div></div></div>
+    </li>
+
+    <li class="row">
+      <div class="row-main"><span class="n">05</span><h3>lbaoutaouais.com</h3><span class="k"><span lang="en">League site</span><span lang="fr">Site de ligue</span></span></div>
+      <div class="row-more"><div><div class="more-in"><span></span>
+        <div>
+          <p><span lang="en">The public home of the LBAO, the adult softball league I've organized since 2013 — schedules, standings and stats on WordPress + SportsPress, plus a beta environment for new features.</span><span lang="fr">Le site public de la LBAO, la ligue de balle-molle adulte que j'organise depuis 2013 — horaires, classements et stats sur WordPress + SportsPress, et un environnement bêta pour les nouveautés.</span></p>
+          <div class="chips"><span class="chip">WordPress</span><span class="chip">SportsPress</span></div>
+          <a class="live" href="https://lbaoutaouais.com" target="_blank" rel="noopener">lbaoutaouais.com ↗</a>
+        </div>
+      </div></div></div>
+    </li>
+
+  </ul>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact">
+  <div class="eyebrow"><span lang="en">Got a project?</span><span lang="fr">Un projet?</span></div>
+  <a class="big" href="mailto:brousseau.d@gmail.com"><span lang="en">Let's talk</span><span lang="fr">Jasons-en</span> <span class="arr">→</span></a>
+  <div class="elsewhere">
+    <a href="https://github.com/brousseaud" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</section>
+<footer>© <span id="yr"></span> Dan — Gatineau, QC</footer>
+
+<script>
+(() => {
+  const root = document.documentElement;
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- language toggle with scramble ---------- */
+  const btn = document.getElementById('langBtn');
+  const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZéèàç#/*-';
+  function scramble(el){
+    const nodes = [], walk = n => n.childNodes.forEach(c => c.nodeType === 3 ? nodes.push(c) : walk(c));
+    walk(el);
+    nodes.forEach(node => {
+      const final = node.__orig || (node.__orig = node.textContent);
+      let f = 0; const total = 18;
+      const tick = () => {
+        f++;
+        node.textContent = [...final].map((ch, i) =>
+          ch === ' ' || ch === ' ' || i < (f / total) * final.length ? ch : GLYPHS[Math.random() * GLYPHS.length | 0]).join('');
+        if (f < total) requestAnimationFrame(tick); else node.textContent = final;
+      };
+      tick();
+    });
+  }
+  function setLang(l, animate){
+    root.dataset.lang = l; root.lang = l; btn.textContent = l === 'en' ? 'FR' : 'EN';
+    try { localStorage.setItem('lang', l); } catch(e){}
+    if (animate && !reduce) document.querySelectorAll(`.scr [lang="${l}"], .row h3 [lang="${l}"], .big [lang="${l}"]`).forEach(scramble);
+  }
+  let saved = null; try { saved = localStorage.getItem('lang'); } catch(e){}
+  setLang(saved || ((navigator.language || 'en').startsWith('fr') ? 'fr' : 'en'));
+  btn.addEventListener('click', () => setLang(root.dataset.lang === 'en' ? 'fr' : 'en', true));
+
+  /* ---------- split hero ---------- */
+  const hero = document.getElementById('hero'), knob = document.getElementById('knob');
+  let x = 100, target = 50, dragging = false;
+  const fine = matchMedia('(pointer: fine)').matches;
+  const pct = e => Math.min(96, Math.max(4, (e.clientX - hero.getBoundingClientRect().left) / hero.clientWidth * 100));
+  hero.addEventListener('pointerdown', e => { dragging = true; hero.classList.add('touched'); target = pct(e); hero.setPointerCapture(e.pointerId); });
+  hero.addEventListener('pointermove', e => { if (dragging || fine) { target = pct(e); if (fine) hero.classList.add('touched'); } });
+  hero.addEventListener('pointerup', () => dragging = false);
+  hero.addEventListener('pointerleave', () => { if (fine && !dragging) target = 50; });
+  knob.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') target = Math.max(4, target - 5);
+    if (e.key === 'ArrowRight') target = Math.min(96, target + 5);
+    hero.classList.add('touched');
+  });
+  (function loop(){
+    x += (target - x) * (reduce ? 1 : 0.12);
+    hero.style.setProperty('--x', x.toFixed(2) + '%');
+    knob.setAttribute('aria-valuenow', Math.round(x));
+    requestAnimationFrame(loop);
+  })();
+
+  /* ---------- project rows: accordion ---------- */
+  document.querySelectorAll('.row').forEach(row => {
+    row.addEventListener('click', e => {
+      if (e.target.closest('a')) return;
+      const open = row.classList.contains('open');
+      document.querySelectorAll('.row.open').forEach(r => r.classList.remove('open'));
+      if (!open) row.classList.add('open');
+    });
+  });
+})();
+</script>
+</body>
+</html>
